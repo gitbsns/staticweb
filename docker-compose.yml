@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  webserver1:
+    image: staticimg
+    restart: always
+
+  webserver2:
+    image: staticimg
+    restart: always
+
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    links:
+      - webserver1
+      - webserver2
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
